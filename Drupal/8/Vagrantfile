@@ -12,7 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.network :forwarded_port, guest: 80, host: 8080, auto_correct: true # website (accessing "localhost:8080")
     config.vm.network :forwarded_port, guest: 443, host: 8443, auto_correct: true # ssl (accessing "localhost:8443")
     config.vm.network :forwarded_port, guest: 3306, host: 4306, auto_correct: true # mysql
-    config.vm.network :forwarded_port, guest: 9010, host: 9010, auto_correct: true # xdebug
+    config.vm.network :forwarded_port, guest: 9000, host: 9090, auto_correct: true # xdebug
 
     config.vm.synced_folder "./", "/vagrant", id: "vagrant", :mount_options => ["dmode=775", "fmode=775"]
 
