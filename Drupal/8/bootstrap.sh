@@ -99,10 +99,12 @@ ln -s /usr/share/php/drush-8/vendor/drush/drush/drush /usr/local/bin/drush
 # Download and extract
 if [[ ! -f "/vagrant/httpdocs/index.php" ]]; then
   cd /vagrant/httpdocs
-  wget https://ftp.drupal.org/files/projects/drupal-8.1.8.tar.gz
-  tar -zxvf drupal-8.1.8.tar.gz
-  mv drupal-8.1.8/* drupal-8.1.8/.htaccess .
+  #wget https://ftp.drupal.org/files/projects/drupal-8.2.1.tar.gz
+  #tar -zxvf drupal-8.2.1.tar.gz
+  drush dl drupal -y --drupal-project-rename=drupal-latest
+  mv drupal-latest/* drupal-latest/.htaccess .
   # Clean up downloaded file and extracted dir
-  rm -rf drupal-8.1.8*
+  rm -rf drupal-latest*
+  drush site-install minimal -y --db-url='mysql://user:password@localhost/drupal' --site-name=Vagrant --account-name=admin --account-pass=password
 fi
 
